@@ -26,10 +26,12 @@ public class TradingAlgorithmImpl implements TradingAlgorithm {
 
         productMap.computeIfPresent(price.getProductName(), (k,v) -> {
             // Keep max 4 prices at a time and remove the oldest if it exceeds 4
-            if(v.size() == PRICE_CHANGE_LIMIT){
-                v.remove(0);
+            synchronized (productMap) {
+                if (v.size() == PRICE_CHANGE_LIMIT) {
+                    v.remove(0);
+                }
+                v.add(price.getNumericValue());
             }
-            v.add(price.getNumericValue());
             return v;
         });
         return computeTrade(price);
