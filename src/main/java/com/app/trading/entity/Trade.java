@@ -7,6 +7,15 @@ public class Trade {
     private double price = 0.0;
     private int quantity = 0;
 
+    public Trade(Price price, int quantity) {
+
+        setProductName(price.getProductName());
+        setDirection(Direction.BUY);
+        setQuantity(quantity);
+        setPrice(price.getNumericValue());
+    }
+
+
     public String getProductName() {
         return productName;
     }

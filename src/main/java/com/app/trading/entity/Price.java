@@ -6,6 +6,11 @@ public class Price {
     private double numericValue = 0.0;
 
 
+    public Price(String productName, double numericValue) {
+        this.productName = productName;
+        this.numericValue = numericValue;
+    }
+
     public String getProductName() {
         return productName;
     }
